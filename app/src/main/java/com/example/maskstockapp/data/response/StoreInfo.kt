@@ -1,5 +1,6 @@
 package com.example.maskstockapp.data.response
 
+import com.example.maskstockapp.data.model.MaskStoreModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -17,7 +18,7 @@ data class StoreInfo(
         @Json(name = "code")
         val code: String,
         @Json(name = "created_at")
-        val createdAt: String,
+        val createdAt: String?,
         @Json(name = "lat")
         val lat: Double,
         @Json(name = "lng")
@@ -25,10 +26,15 @@ data class StoreInfo(
         @Json(name = "name")
         val name: String,
         @Json(name = "remain_stat")
-        val remainStat: String,
+        val remainStat: String?,
         @Json(name = "stock_at")
-        val stockAt: String,
+        val stockAt: String?,
         @Json(name = "type")
         val type: String
     )
 }
+
+fun StoreInfo.transformMaskStoreModel() =
+    this.stores.map { store ->
+        MaskStoreModel(store.code, store.name, store.addr, store.remainStat)
+    }
