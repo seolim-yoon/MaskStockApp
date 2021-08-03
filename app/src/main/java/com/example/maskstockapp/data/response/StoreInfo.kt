@@ -1,6 +1,8 @@
 package com.example.maskstockapp.data.response
 
+import android.location.Location
 import com.example.maskstockapp.data.model.MaskStoreModel
+import com.example.maskstockapp.util.LocationDistance
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -34,7 +36,8 @@ data class StoreInfo(
     )
 }
 
-fun StoreInfo.transformMaskStoreModel() =
+fun StoreInfo.transformMaskStoreModel(location: Location?) =
     this.stores.map { store ->
-        MaskStoreModel(store.code, store.name, store.addr, store.remainStat)
+        MaskStoreModel(store.code, store.name, store.addr, store.remainStat, store.lat, store.lng,
+            LocationDistance.distance(location?.latitude ?: 0.0, location?.longitude ?: 0.0, store.lat, store.lng, "k"))
     }

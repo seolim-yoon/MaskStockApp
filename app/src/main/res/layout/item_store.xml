@@ -42,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:text="1.0km"
             android:textSize="14dp"
+            app:setDistance="@{store.distance}"
             app:layout_constraintStart_toStartOf="@id/tv_store_name"
             app:layout_constraintTop_toBottomOf="@id/tv_store_address"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@{store.remainStat}"
+            app:setRemainStat="@{store.remainStat}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="재고 상태"/>
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="100개 이상"
+            app:setMaskStock="@{store.remainStat}"
             app:layout_constraintTop_toBottomOf="@id/tv_store_status"
             app:layout_constraintEnd_toEndOf="@id/tv_store_status"
             tools:text="재고"/>
